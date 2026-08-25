@@ -480,9 +480,9 @@ class App {
       else if (q.questionType === '시대 순서 배열형') headerTitle = '【 시 대 순 서 자 료 】';
       else if (q.questionType === '역사 대화형') headerTitle = '【 역 사 대 화 / 토 론 】';
 
-      let passageHtml = `<div class="passage-header-title text-xs font-bold tracking-wider mb-2 text-amber-900 dark:text-amber-300 font-sans">${headerTitle}</div><div>${q.boxContent.replace(/\n/g, '<br>')}</div>`;
+      let passageHtml = `<div class="passage-header-title font-bold tracking-wider font-sans">${headerTitle}</div><div class="passage-body">${q.boxContent.replace(/\n/g, '<br>')}</div>`;
       if (q.source && q.source.trim().length > 0) {
-        passageHtml += `<div class="text-right text-xs text-amber-900/80 dark:text-amber-300/80 font-medium italic mt-2.5 pt-2 border-t border-amber-300/40 dark:border-gray-700/50">- ${q.source} -</div>`;
+        passageHtml += `<div class="passage-source font-sans">- ${q.source} -</div>`;
       }
       this.passageTextEl.innerHTML = passageHtml;
     } else {
@@ -592,7 +592,7 @@ class App {
             <i data-lucide="book-open" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
             <span>🎯 정답 및 사료 심층 해설</span>
           </div>
-          <p class="text-xs md:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-serif-kr">
+          <p class="explanation-body font-serif-kr">
             ${q.explanation}
           </p>
         </div>
@@ -900,8 +900,8 @@ class App {
         <h4 class="font-bold text-gray-900 dark:text-gray-100 text-base leading-snug">${q.question}</h4>
 
         ${q.boxContent ? `
-          <div class="passage-box p-4 rounded-xl text-xs md:text-sm font-serif-kr leading-relaxed text-gray-800 dark:text-gray-200">
-            <div class="passage-header-title text-xs font-bold tracking-wider mb-2 text-amber-900 dark:text-amber-300 font-sans">
+          <div class="passage-box p-4 md:p-5 rounded-xl font-serif-kr">
+            <div class="passage-header-title font-bold tracking-wider font-sans">
               ${q.questionType === '가상 일기형' ? '【 가 상 일 기 / 기 록 】' :
                 q.questionType === '수행평가 보고서형' ? '【 수 행 평 가 / 탐 구 자 료 】' :
                 q.questionType === '역사 신문형' ? '【 역 사 신 문 / 보 도 기 사 】' :
@@ -910,8 +910,8 @@ class App {
                 q.questionType === '시대 순서 배열형' ? '【 시 대 순 서 자 료 】' :
                 q.questionType === '역사 대화형' ? '【 역 사 대 화 / 토 론 】' : '【 사 료 / 제 시 문 】'}
             </div>
-            <div class="whitespace-pre-line">${q.boxContent}</div>
-            ${q.source ? `<div class="text-right text-[11px] text-amber-900/80 dark:text-amber-300/80 font-medium italic mt-2 pt-2 border-t border-amber-300/40 dark:border-gray-700/50">- ${q.source} -</div>` : ''}
+            <div class="passage-body whitespace-pre-line">${q.boxContent}</div>
+            ${q.source ? `<div class="passage-source font-sans">- ${q.source} -</div>` : ''}
           </div>
         ` : ''}
 
@@ -925,7 +925,7 @@ class App {
               <i data-lucide="book-open" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
               <span>🎯 정답 및 사료 심층 해설 (정답: ${q.answer}번)</span>
             </h5>
-            <p class="text-xs md:text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-serif-kr">${q.explanation}</p>
+            <p class="explanation-body font-serif-kr">${q.explanation}</p>
           </div>
           ${q.tips && q.tips.length > 0 ? `
             <div class="p-3.5 rounded-lg bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/70 dark:border-amber-900/60">

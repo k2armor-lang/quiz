@@ -1,9 +1,11 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Outfit:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@400;700;800&family=Outfit:wght@400;600;700;800&display=swap');
 
 :root {
+  /* Noto Serif KR is hinted far better than Nanum Myeongjo at body sizes,
+     so 사료(지문) text stays crisp on tablets instead of looking washed out. */
+  --font-serif: 'Noto Serif KR', 'Nanum Myeongjo', serif;
   --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-  --font-serif: 'Nanum Myeongjo', serif;
   --font-display: 'Outfit', 'Pretendard', sans-serif;
 }
 
@@ -58,29 +60,106 @@ h4 u {
 
 /* Exam Passage (사료/지문) Paper Texture Styling */
 .passage-box {
-  background: linear-gradient(135deg, #fdfbf7 0%, #f7f3e8 100%);
-  border: 1.5px solid #d4c5a9;
+  background: linear-gradient(135deg, #fffdf8 0%, #f8f4ea 100%);
+  border: 1.5px solid #cbbb9b;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(180, 160, 120, 0.12);
   position: relative;
+  /* body sets `antialiased`, which thins serif strokes into a grey haze on
+     tablet screens — opt this box back into full-strength rendering. */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
 }
 
 .dark .passage-box {
-  background: linear-gradient(135deg, #1f2430 0%, #171b24 100%);
-  border: 1.5px solid #3e475e;
+  background: linear-gradient(135deg, #232936 0%, #1a1f29 100%);
+  border: 1.5px solid #4a556e;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* 사료 body text: bigger, heavier and higher-contrast than the surrounding UI.
+   Overrides the `text-xs md:text-sm` utilities inherited from the container. */
+.passage-body {
+  font-size: 1rem;
+  line-height: 1.85;
+  font-weight: 500;
+  color: #1c1917;
+  letter-spacing: -0.003em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.dark .passage-body {
+  color: #f1f5f9;
+  font-weight: 400;
+}
+
+.passage-source {
+  display: block;
+  text-align: right;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.6;
+  color: #6b4b16;
+  margin-top: 0.625rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(180, 150, 100, 0.4);
+}
+
+.dark .passage-source {
+  color: #fcd34d;
+  border-top-color: rgba(148, 163, 184, 0.28);
 }
 
 .passage-header-title {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #78350f;
+  color: #6b3d05;
   margin-bottom: 0.5rem;
 }
 
 .dark .passage-header-title {
-  color: #fbbf24;
+  color: #fcd34d;
+}
+
+/* Tablet & up (iPad portrait starts at 768px): a touch larger again, since the
+   passage is read at arm's length rather than phone distance. */
+@media (min-width: 768px) {
+  .passage-body {
+    font-size: 1.0625rem;
+    line-height: 1.9;
+  }
+
+  .passage-source {
+    font-size: 0.875rem;
+  }
+
+  .passage-header-title {
+    font-size: 0.875rem;
+  }
+}
+
+/* Explanation / tip copy also uses the serif face — keep it readable too. */
+.explanation-body {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: #1f2937;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  word-break: keep-all;
+}
+
+.dark .explanation-body {
+  color: #e5e7eb;
+}
+
+@media (min-width: 768px) {
+  .explanation-body {
+    font-size: 1rem;
+  }
 }
 
 /* Option selection animations */
@@ -182,6 +261,17 @@ h4 u {
     border: 1px solid #c8b99d !important;
     color: #000000 !important;
     page-break-inside: avoid;
+  }
+
+  .passage-body {
+    font-size: 11pt !important;
+    line-height: 1.7 !important;
+    color: #000000 !important;
+  }
+
+  .passage-source,
+  .passage-header-title {
+    color: #1f2937 !important;
   }
 
   #result-screen > div:first-child {

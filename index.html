@@ -6,8 +6,8 @@
   <title>고등 한국사 1등급 메이커 | 실전 200제 내신 대비 문제은행</title>
   <meta name="description" content="고등학교 1학년 한국사 1, 2 교과서 기반 단원별 맞춤형 4지선다 퀴즈 및 실전 200제 문제은행 애플리케이션">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS CDN (배포용: 버전 고정 — 라이브러리 업데이트로 레이아웃이 바뀌는 것을 방지) -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -28,8 +28,8 @@
     }
   </script>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons (배포용: 버전 고정) -->
+  <script src="https://unpkg.com/lucide@1.33.0/dist/umd/lucide.min.js"></script>
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
@@ -236,8 +236,8 @@
         </h3>
 
         <!-- Historical Passage (사료/지문) Box -->
-        <div id="quiz-passage-container" class="passage-box p-5 rounded-2xl text-xs md:text-sm font-serif-kr text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line hidden">
-          <p id="quiz-passage-text"></p>
+        <div id="quiz-passage-container" class="passage-box p-5 md:p-6 rounded-2xl font-serif-kr whitespace-pre-line hidden">
+          <div id="quiz-passage-text"></div>
         </div>
 
         <!-- 5-Option Choices List -->
